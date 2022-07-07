@@ -13,14 +13,14 @@ public class DomainVoteService implements VoteService {
     }
 
     @Override
-    public void castVote(Long id, String email, String restaurant) {
-        final Vote vote = new Vote(id, email, restaurant);
+    public void castVote(Long session, String email, String restaurant) {
+        final Vote vote = new Vote(session, email, restaurant);
         voteRepository.save(vote);
     }
 
     @Override
-    public int countVotes(Long id, String restaurant) {
+    public int countVotes(Long session, String restaurant) {
         return voteRepository
-          .findByIdAndRestaurant(id, restaurant).size();
+          .findBySessionAndRestaurant(session, restaurant).size();
     }    
 }

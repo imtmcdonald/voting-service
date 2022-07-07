@@ -22,13 +22,13 @@ public class VoteController {
     @CrossOrigin(origins = "*")
     @PostMapping(value = "/{id}/cast", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void castVote(@RequestBody final CastVoteRequest castVoteRequest) {
-        voteService.castVote(castVoteRequest.getId(), castVoteRequest.getEmail(), castVoteRequest.getRestaurant()); 
+        voteService.castVote(castVoteRequest.getSession(), castVoteRequest.getEmail(), castVoteRequest.getRestaurant()); 
     }
 
     @CrossOrigin(origins = "*")
     @PostMapping(value = "/{id}/count", consumes = MediaType.APPLICATION_JSON_VALUE)
     public CountVotesResponse countVotes(@RequestBody final CountVotesRequest countVotesRequest) {
-        final int count = voteService.countVotes(countVotesRequest.getId(), countVotesRequest.getRestaurant()); 
+        final int count = voteService.countVotes(countVotesRequest.getSession(), countVotesRequest.getRestaurant()); 
         CountVotesResponse response = new CountVotesResponse(count);
 
         System.out.println(count);

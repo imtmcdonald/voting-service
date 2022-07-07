@@ -6,19 +6,19 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CastVoteRequest {
-    @NotNull private Long id;
+    @NotNull private Long session;
     @NotNull private String email;
     @NotNull private String restaurant;
 
     @JsonCreator
-    public CastVoteRequest(@JsonProperty("id") final Long id, @JsonProperty("email") final String email, @JsonProperty("restaurant") final String restaurant) {
-        this.id = id;
+    public CastVoteRequest(@JsonProperty("session") final Long session, @JsonProperty("email") final String email, @JsonProperty("restaurant") final String restaurant) {
+        this.session = session;
         this.email = email;
         this.restaurant = restaurant;
     }
 
-    public Long getId() {
-        return id;
+    public Long getSession() {
+        return session;
     }
 
     public String getEmail() {

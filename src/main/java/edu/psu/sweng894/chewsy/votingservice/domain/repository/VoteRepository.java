@@ -8,5 +8,5 @@ import edu.psu.sweng894.chewsy.votingservice.domain.Vote;
 
 @Repository
 public interface VoteRepository extends CrudRepository<Vote, Long> {
-    List<Vote> findByIdAndRestaurant(Long id, String restaurant);
+    List<Vote> findBySessionAndRestaurant(Long session, String restaurant);
 }

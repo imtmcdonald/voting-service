@@ -6,17 +6,17 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CountVotesRequest {
-    @NotNull private Long id;
+    @NotNull private Long session;
     @NotNull private String restaurant;
 
     @JsonCreator
-    public CountVotesRequest(@JsonProperty("id") final Long id, @JsonProperty("restaurant") final String restaurant) {
-        this.id = id;
+    public CountVotesRequest(@JsonProperty("session") final Long session, @JsonProperty("restaurant") final String restaurant) {
+        this.session = session;
         this.restaurant = restaurant;
     }
 
-    public Long getId() {
-        return id;
+    public Long getSession() {
+        return session;
     }
 
     public String getRestaurant() {

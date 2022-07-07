@@ -1,16 +1,23 @@
 package edu.psu.sweng894.chewsy.votingservice.domain;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 
 @Entity
+@IdClass(CompositeKey.class)
 public class Vote {
     @Id
-    private Long id;
+    private Long session;
+    @Id
     private String email;
     private String restaurant;
 
-    public Vote(final Long id, final String email, final String restaurant) {
-        this.id = id;
+    private Vote(){}
+
+    public Vote(final Long session, final String email, final String restaurant) {
+        this.session = session;
         this.email = email;
         this.restaurant = restaurant;
     }
@@ -18,8 +25,8 @@ public class Vote {
     @Override
     public String toString() {
         return String.format(
-            "Vote[id='%d', email='%s', restaurant='%s']",
-            id, email, restaurant);
+            "Vote[session='%d', email='%s', restaurant='%s']",
+            session, email, restaurant);
     }
 
     public String getEmail() {
@@ -29,8 +36,8 @@ public class Vote {
     public String getRestaurant() {
         return this.restaurant;
     }
-    
-    public Long getId() {
-        return this.id;
+
+    public Long getSession() {
+        return this.session;
     }  
 }

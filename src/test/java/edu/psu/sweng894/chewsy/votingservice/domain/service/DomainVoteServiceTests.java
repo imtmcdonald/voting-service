@@ -55,7 +55,7 @@ public class DomainVoteServiceTests {
         votes.add(voteB);
         votes.add(voteC);
 
-        when(voteRepository.findByIdAndRestaurant(anyLong(), anyString())).thenReturn(votes);
+        when(voteRepository.findBySessionAndRestaurant(anyLong(), anyString())).thenReturn(votes);
 
         int actual = classUnderTest.countVotes(id, restaurant);
 

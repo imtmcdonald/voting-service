@@ -8,25 +8,25 @@ public class VoteTests {
     private Vote classUnderTest;
     String email = "test@email.com";
     String restaurant = "test";
-    Long id = Long.parseLong("31");
+    Long session = Long.parseLong("31");
 
     @BeforeEach
     public void setUp() {
-        classUnderTest = new Vote(id, email, restaurant);
+        classUnderTest = new Vote(session, email, restaurant);
     }
 
     @Test
-    public void shouldCreateVote_thenReturnId() {
-        String actual = classUnderTest.getEmail();
+    public void shouldCreateVote_thenReturnSession() {
+        Long actual = classUnderTest.getSession();
 
-        assertEquals(email, actual);
+        assertEquals(session, actual);
     }
 
     @Test
     public void shouldCreateVote_thenReturnEmail() {
-        Long actual = classUnderTest.getId();
+        String actual = classUnderTest.getEmail();
 
-        assertEquals(id, actual);
+        assertEquals(email, actual);
     }
 
     @Test
@@ -39,7 +39,7 @@ public class VoteTests {
     @Test
     public void shouldCreateString_thenRetunIt() {
         String actual = classUnderTest.toString();
-        String expected = "Vote[id='31', email='test@email.com', restaurant='test']";
+        String expected = "Vote[session='31', email='test@email.com', restaurant='test']";
 
         assertEquals(expected, actual);
     }
