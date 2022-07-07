@@ -18,7 +18,7 @@ public class Vote {
     @Override
     public String toString() {
         return String.format(
-            "Session[id='%d', email='%s', restaurant='%s']",
+            "Vote[id='%d', email='%s', restaurant='%s']",
             id, email, restaurant);
     }
 

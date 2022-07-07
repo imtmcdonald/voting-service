@@ -35,5 +35,13 @@ public class VoteTests {
 
         assertEquals(restaurant, actual);
     }
+
+    @Test
+    public void shouldCreateString_thenRetunIt() {
+        String actual = classUnderTest.toString();
+        String expected = "Vote[id='31', email='test@email.com', restaurant='test']";
+
+        assertEquals(expected, actual);
+    }
 }
 
