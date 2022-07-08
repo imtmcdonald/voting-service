@@ -12,6 +12,7 @@ public class Vote {
     private Long session;
     @Id
     private String email;
+    @Id
     private String restaurant;
 
     private Vote(){}

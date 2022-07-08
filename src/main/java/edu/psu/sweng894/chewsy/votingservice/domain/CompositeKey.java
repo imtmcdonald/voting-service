@@ -5,4 +5,5 @@ import java.io.Serializable;
 public class CompositeKey implements Serializable {
     private Long session;
     private String email;
+    private String restaurant;
 }
