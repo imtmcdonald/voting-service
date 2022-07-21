@@ -7,19 +7,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CountVotesRequest {
     @NotNull private Long session;
-    @NotNull private String restaurant;
+    @NotNull private int voters;
 
     @JsonCreator
-    public CountVotesRequest(@JsonProperty("session") final Long session, @JsonProperty("restaurant") final String restaurant) {
+    public CountVotesRequest(@JsonProperty("session") final Long session, @JsonProperty("voters") final int voters) {
         this.session = session;
-        this.restaurant = restaurant;
+        this.voters = voters;
     }
 
     public Long getSession() {
         return session;
     }
 
-    public String getRestaurant() {
-        return restaurant;
+    public int getVoters() {
+        return voters;
     }
 }

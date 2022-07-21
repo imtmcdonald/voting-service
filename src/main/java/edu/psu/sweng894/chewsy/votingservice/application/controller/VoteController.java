@@ -1,5 +1,7 @@
 package edu.psu.sweng894.chewsy.votingservice.application.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +28,12 @@ public class VoteController {
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping(value = "/{id}/count", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/count", consumes = MediaType.APPLICATION_JSON_VALUE)
     public CountVotesResponse countVotes(@RequestBody final CountVotesRequest countVotesRequest) {
-        final int count = voteService.countVotes(countVotesRequest.getSession(), countVotesRequest.getRestaurant()); 
-        CountVotesResponse response = new CountVotesResponse(count);
+        final List<String> consensus = voteService.countVotes(countVotesRequest.getSession(), countVotesRequest.getVoters()); 
+        CountVotesResponse response = new CountVotesResponse(consensus);
 
-        System.out.println(count);
+        System.out.println(consensus);
         return response;
     }
 }
