@@ -1,11 +1,14 @@
 package edu.psu.sweng894.chewsy.votingservice.application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,15 +41,18 @@ public class VoteControllerTests {
     }
 
     @Test
-    public void shouldCountVotes_thenReturnCount() {
+    public void shouldCountVotes_thenReturnConsensus() {
+        List<String> expected = new ArrayList();
         Long id = Long.parseLong("31");
+        int voters = 5;
         String restaurant = "test";
-        CountVotesRequest countVotesRequest = new CountVotesRequest(id, restaurant);
-        int expected = 3;
+        CountVotesRequest countVotesRequest = new CountVotesRequest(id, voters);
+
+        expected.add(restaurant);
         
-        when(voteService.countVotes(anyLong(), anyString())).thenReturn(expected);
+        when(voteService.countVotes(anyLong(), anyInt())).thenReturn(expected);
         
-        int actual = classUnderTest.countVotes(countVotesRequest).getCount();
+        List<String> actual = classUnderTest.countVotes(countVotesRequest).getCount();
 
         assertEquals(expected, actual);
     }

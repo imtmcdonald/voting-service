@@ -1,7 +1,5 @@
 package edu.psu.sweng894.chewsy.votingservice.domain;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 

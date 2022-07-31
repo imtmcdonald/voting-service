@@ -38,26 +38,33 @@ public class DomainVoteServiceTests {
     }
 
     @Test
-    public void shouldCastVotes_thenCountThem() {
+    public void shouldCastVotes_thenReturnConsensus() {
+        final List<Vote> votes = new ArrayList();
+        final List<String> expected = new ArrayList();
         final Long id = Long.parseLong("31");
         final String emailA = "testa@email.com";
         final String emailB = "testb@email.com";
         final String emailC = "testc@email.com";
-        final String restaurant = "test";
+        final String restaurant = "testA";
+        final String restaurantOp = "testB";
         final Vote voteA = new Vote(id, emailA, restaurant);
         final Vote voteB = new Vote(id, emailB, restaurant);
-        final Vote voteC = new Vote(id, emailC, restaurant);
-        final int expected = 3;
+        final Vote voteC = new Vote(id, emailB, restaurantOp);
+        final Vote voteD = new Vote(id, emailC, restaurant);
+        final Vote voteE = new Vote(id, emailC, restaurantOp);
+        final int voters = 3;
 
-        final List<Vote> votes = new ArrayList();
+        expected.add(restaurant);
 
         votes.add(voteA);
         votes.add(voteB);
         votes.add(voteC);
+        votes.add(voteD);
+        votes.add(voteE);
 
-        when(voteRepository.findBySessionAndRestaurant(anyLong(), anyString())).thenReturn(votes);
-
-        int actual = classUnderTest.countVotes(id, restaurant);
+        when(voteRepository.findBySession(anyLong())).thenReturn(votes);
+        
+        List<String> actual = classUnderTest.countVotes(id, voters);
 
         assertEquals(expected, actual);
     }

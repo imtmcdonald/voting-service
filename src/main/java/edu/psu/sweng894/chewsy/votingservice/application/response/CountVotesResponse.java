@@ -1,13 +1,15 @@
 package edu.psu.sweng894.chewsy.votingservice.application.response;
 
-public class CountVotesResponse {
-    private final int count;
+import java.util.List;
 
-    public CountVotesResponse(final int count) {
-        this.count = count;
+public class CountVotesResponse {
+    private final List<String> consensus;
+
+    public CountVotesResponse(final List<String> consensus) {
+        this.consensus = consensus;
     }
 
-    public int getCount() {
-        return count;
+    public List<String> getCount() {
+        return consensus;
     }
 }
