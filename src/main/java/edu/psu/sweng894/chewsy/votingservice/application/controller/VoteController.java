@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import edu.psu.sweng894.chewsy.votingservice.application.request.CastVoteRequest;
 import edu.psu.sweng894.chewsy.votingservice.application.request.CountVotesRequest;
+import edu.psu.sweng894.chewsy.votingservice.application.request.RemoveVoteRequest;
 import edu.psu.sweng894.chewsy.votingservice.application.response.CountVotesResponse;
 import edu.psu.sweng894.chewsy.votingservice.domain.service.VoteService;
 
@@ -25,6 +26,12 @@ public class VoteController {
     @PostMapping(value = "/{id}/cast", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void castVote(@RequestBody final CastVoteRequest castVoteRequest) {
         voteService.castVote(castVoteRequest.getSession(), castVoteRequest.getEmail(), castVoteRequest.getRestaurant()); 
+    }
+
+    @CrossOrigin(origins = "*")
+    @PostMapping(value = "/{id}/remove", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void removeVote(@RequestBody final RemoveVoteRequest removeVoteRequest) {
+        voteService.removeVote(removeVoteRequest.getSession(), removeVoteRequest.getEmail(), removeVoteRequest.getRestaurant()); 
     }
 
     @CrossOrigin(origins = "*")

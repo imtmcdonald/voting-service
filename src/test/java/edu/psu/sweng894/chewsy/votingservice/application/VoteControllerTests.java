@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import edu.psu.sweng894.chewsy.votingservice.application.controller.VoteController;
 import edu.psu.sweng894.chewsy.votingservice.application.request.CastVoteRequest;
 import edu.psu.sweng894.chewsy.votingservice.application.request.CountVotesRequest;
+import edu.psu.sweng894.chewsy.votingservice.application.request.RemoveVoteRequest;
 import edu.psu.sweng894.chewsy.votingservice.domain.service.VoteService;
 
 public class VoteControllerTests {
@@ -38,6 +39,18 @@ public class VoteControllerTests {
         classUnderTest.castVote(castVoteRequest);
 
         verify(voteService).castVote(id, email, restaurant);
+    }
+
+    @Test
+    public void shouldRemoveVote_thenReturnVerifyIt() {
+        Long id = Long.parseLong("31");
+        String email = "test@email.com";
+        String restaurant = "test";
+        RemoveVoteRequest removeVoteRequest = new RemoveVoteRequest(id, email, restaurant);
+
+        classUnderTest.removeVote(removeVoteRequest);
+
+        verify(voteService).removeVote(id, email, restaurant);
     }
 
     @Test
