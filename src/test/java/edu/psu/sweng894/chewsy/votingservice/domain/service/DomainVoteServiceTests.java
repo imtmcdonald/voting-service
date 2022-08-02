@@ -2,6 +2,9 @@ package edu.psu.sweng894.chewsy.votingservice.domain.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
+
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -35,6 +38,37 @@ public class DomainVoteServiceTests {
         classUnderTest.castVote(id, email, restaurant);
 
         verify(voteRepository).save(any(Vote.class));
+    }
+
+    @Test
+    public void shouldRemoveExistingVote_thenDeleteIt() {
+        final Long id = Long.parseLong("31");
+        final String email = "test@email.com";
+        final String restaurant = "test";
+        final List<Vote> votes = new ArrayList<>();
+
+        Vote newVote = new Vote(id, email, restaurant);
+        votes.add(newVote);
+
+        when(voteRepository.findBySessionAndRestaurantAndEmail(anyLong(), anyString(), anyString())).thenReturn(votes);
+
+        classUnderTest.removeVote(id, email, restaurant);
+
+        verify(voteRepository).delete(any(Vote.class));
+    }
+
+    @Test
+    public void shouldRemoveNonExistantVote_thenDoNothing() {
+        final Long id = Long.parseLong("31");
+        final String email = "test@email.com";
+        final String restaurant = "test";
+        final List<Vote> votes = new ArrayList<>();
+
+        when(voteRepository.findBySessionAndRestaurantAndEmail(anyLong(), anyString(), anyString())).thenReturn(votes);
+
+        classUnderTest.removeVote(id, email, restaurant);
+
+        verify(voteRepository, times(0)).delete(any(Vote.class));
     }
 
     @Test

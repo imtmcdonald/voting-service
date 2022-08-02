@@ -28,6 +28,15 @@ public class DomainVoteService implements VoteService {
     }
 
     @Override
+    public void removeVote(Long session, String email, String restaurant) {
+        final Vote vote = new Vote(session, email, restaurant);
+        if (voteRepository.findBySessionAndRestaurantAndEmail(session, restaurant, email).size() == 1) {
+            System.out.println("removing vote");
+            voteRepository.delete(vote);
+        }
+    }
+
+    @Override
     public List<String> countVotes(Long session, int voters) {
         List<String> restaurants = new ArrayList();
         LinkedHashMap<String, BigDecimal> counts = new LinkedHashMap<String, BigDecimal>();
